@@ -30,28 +30,35 @@ console.log(FilterKupaFinali[0]["Win conditions"]);
 	💡 İPUCU - verilen data içindeki nesnelerin(objects) "Stage" anahtarına bakmalısınız
 */
 
-function Finaller(callback) {
-  const FinalMatches = callback.filter((final) => {
+function Finaller(fifadata) {
+  const FinalMatches = fifadata.filter((final) => {
     return final.Stage === "Final";
   });
   return FinalMatches;
 }
-console.log(Finaller(fifaData));
+//console.log(Finaller(fifaData));
 /*  Görev 3: 
 	Bir higher-order fonksiyonu olan Yillar isimli fonksiyona aşağıdakileri uygulayın: 
 	1. fifaData dizisini(array) fonksiyonun birinci parametresi olarak alacak
-	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(callback) olarak fonksiyonun ikinci parametresi olarak alacak
+	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(fifaData) olarak fonksiyonun ikinci parametresi olarak alacak
 	3. Finaller data setindeki tüm yılları içeren "years" adındaki diziyi(array) döndürecek
 	*/
 
-function Yillar(/* kodlar buraya */) {
-  /* kodlar buraya */
+function Yillar(fifaData, callback) {
+  const years = callback(fifaData).filter((year) => {
+    return year.Stage;
+  });
+  for (let i = 0; i < years.length; i++) {
+    return years[i].Year;
+  }
+  return years;
 }
+console.log(Yillar(fifaData, Finaller));
 
 /*  Görev 4: 
 	Bir higher-order fonksiyonunu olan Kazananlar isimli fonksiyona aşağıdakileri uygulayın:  
 	1. fifaData dizisini(array) fonksiyonunun birinci parametresi olarak alacak
-	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(callback) olarak fonksiyonun ikinci parametresi olarak alacak
+	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(fifaData) olarak fonksiyonun ikinci parametresi olarak alacak
 	3. Her final maçının kazananını (evsahibi ya da deplasman) belirleyecek
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */
@@ -63,9 +70,9 @@ function Kazananlar(/* kodlar buraya */) {
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
 	1. fifaData dizisini(array) fonksiyonunun birinci parametresi olarak alacak
-	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(callback) olarak fonksiyonun ikinci parametresi olarak alacak
-	3. Görev 3'de yazdığınız Yillar fonksiyonunu, geriçağırım(callback) olarak fonksiyonun üçüncü parametresi olarak alacak
-	4. Görev 4'de yazdığınız Kazananlar fonksiyonunu, geriçağırım(callback) olarak fonksiyonun dördüncü parametresi olarak alacak
+	2. Görev 2'de yazdığınız Finaller fonksiyonunu, geriçağırım(fifaData) olarak fonksiyonun ikinci parametresi olarak alacak
+	3. Görev 3'de yazdığınız Yillar fonksiyonunu, geriçağırım(fifaData) olarak fonksiyonun üçüncü parametresi olarak alacak
+	4. Görev 4'de yazdığınız Kazananlar fonksiyonunu, geriçağırım(fifaData) olarak fonksiyonun dördüncü parametresi olarak alacak
 	5. Her yıl için "{yıl} yılında, {ülke} dünya kupasını kazandı!" cümlesini(string) içeren bir diziyi(array) döndürecek
 	
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
